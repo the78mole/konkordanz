@@ -10,3 +10,6 @@ _output/
 # Editor directories
 .vscode/
 .idea/
+
+/.quarto/
+**/*.quarto_ipynb

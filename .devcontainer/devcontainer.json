@@ -1,0 +1,29 @@
+{
+  "name": "konkordanz (Quarto + Typst)",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/the78mole/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true,
+      "ohMyZshTheme": "fino",
+      "username": "vscode",
+      "userUid": "automatic",
+      "userGid": "automatic"
+    }
+  },
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "davidanson.vscode-markdownlint",
+        "bierner.github-markdown-preview",
+        "mathematic.vscode-pdf"
+      ]
+    }
+  }
+}

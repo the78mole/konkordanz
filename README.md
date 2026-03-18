@@ -1,5 +1,9 @@
 # Praktische Konkordanz
 
+[![Build PDF](https://img.shields.io/github/actions/workflow/status/the78mole/konkordanz/build-pdf.yml?branch=main&label=Build%20PDF)](https://github.com/the78mole/konkordanz/actions/workflows/build-pdf.yml)
+[![Lizenz](https://img.shields.io/github/license/the78mole/konkordanz)](LICENSE)
+[![Open in Codespaces](https://img.shields.io/badge/Codespaces-Open-181717?logo=github)](https://github.com/the78mole/konkordanz/codespaces)
+
 Ein System-Strategiepapier zur verfassungskonformen, wirtschaftlichen und sozial
 gerechten Klimatransformation Deutschlands – als Antwort auf die Zukunftsklage
 vor dem Bundesverfassungsgericht.
