@@ -8,7 +8,7 @@ vor dem Bundesverfassungsgericht.
 
 | Datei / Verzeichnis | Beschreibung |
 |---|---|
-| [`konkordanz.qmd`](konkordanz.qmd) | **Zentrales Dokument:** Der 15-Punkte-Plan „Praktische Konkordanz" (Quarto-Quelldatei) |
+| [`konkordanz.md`](konkordanz.md) | **Zentrales Dokument:** Der 15-Punkte-Plan „Praktische Konkordanz" (Quarto-Quelldatei) |
 | [`modellrechnungen/`](modellrechnungen/) | Quantitative Modellrechnungen und Anhänge |
 | [`modellrechnungen/biomasse-kaskade.md`](modellrechnungen/biomasse-kaskade.md) | Anhang I: Biomasse-Kaskade, Pyrolyse-Ökonomie & Wasserstoff/HVO100 |
 | [`modellrechnungen/zeitplan-co2-pfade.md`](modellrechnungen/zeitplan-co2-pfade.md) | Anhang II: Implementierungs-Roadmap 2026–2035, CO₂-Pfade & Finanzierungsarchitektur |
@@ -20,7 +20,7 @@ Typst-Backend als PDF gerendert werden:
 
 ```bash
 # Quarto installieren: https://quarto.org/docs/get-started/
-quarto render konkordanz.qmd --to typst
+quarto render konkordanz.md --to typst
 # → _output/konkordanz.pdf
 ```
 

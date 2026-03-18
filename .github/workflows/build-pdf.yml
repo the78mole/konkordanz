@@ -21,7 +21,7 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Render PDF with Quarto + Typst
-        run: quarto render konkordanz.qmd --to typst
+        run: quarto render konkordanz.md --to typst
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4

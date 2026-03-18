@@ -1,7 +1,7 @@
 # Modellrechnungen
 
 Dieses Verzeichnis enthält die quantitativen Modellrechnungen und Datengrundlagen,
-die das Hauptdokument [`../konkordanz.qmd`](../konkordanz.qmd) belegen.
+die das Hauptdokument [`../konkordanz.md`](../konkordanz.md) belegen.
 
 ## Dateien
 
