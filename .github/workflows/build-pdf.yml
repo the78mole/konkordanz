@@ -1,0 +1,31 @@
+name: Build PDF
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto (includes Typst)
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render PDF with Quarto + Typst
+        run: quarto render konkordanz.qmd --to typst
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: konkordanz-pdf
+          path: _output/konkordanz.pdf
+          if-no-files-found: error

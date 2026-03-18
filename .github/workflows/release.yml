@@ -1,0 +1,63 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository (full history for versioning)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine semantic version
+        id: version
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          tag_prefix: "v"
+          major_pattern: "(MAJOR)"
+          minor_pattern: "(MINOR)"
+          version_format: "${major}.${minor}.${patch}"
+          bump_each_commit: false
+          search_commit_body: false
+
+      - name: Collect commits since last release
+        id: changelog
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -z "$LAST_TAG" ]; then
+            COMMITS=$(git log --pretty=format:"- %s" --no-merges)
+          else
+            COMMITS=$(git log "${LAST_TAG}..HEAD" --pretty=format:"- %s" --no-merges)
+          fi
+          if [ -z "$COMMITS" ]; then
+            COMMITS="- Keine neuen Commits seit dem letzten Release."
+          fi
+          {
+            echo "commits<<EOF"
+            echo "$COMMITS"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Set up Quarto (includes Typst)
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render PDF with Quarto + Typst
+        run: quarto render konkordanz.qmd --to typst
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "v${{ steps.version.outputs.version }}"
+          name: "Release v${{ steps.version.outputs.version }}"
+          body: |
+            ## Änderungen seit dem letzten Release
+
+            ${{ steps.changelog.outputs.commits }}
+          files: _output/konkordanz.pdf
+          fail_on_unmatched_files: true
