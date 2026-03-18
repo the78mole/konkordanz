@@ -50,6 +50,9 @@ jobs:
       - name: Render PDF with Quarto + Typst
         run: quarto render konkordanz.md --to typst
 
+      - name: Rename PDF to include version
+        run: mv _output/konkordanz.pdf "_output/konkordanz-v${{ steps.version.outputs.version }}.pdf"
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -59,5 +62,5 @@ jobs:
             ## Änderungen seit dem letzten Release
 
             ${{ steps.changelog.outputs.commits }}
-          files: _output/konkordanz.pdf
+          files: "_output/konkordanz-v${{ steps.version.outputs.version }}.pdf"
           fail_on_unmatched_files: true
